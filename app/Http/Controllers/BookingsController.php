@@ -61,9 +61,7 @@ class BookingsController extends Controller
      */
     public function show($id)
     {
-        //Finding the id
-        
-
+            
     }
 
     /**
@@ -74,7 +72,7 @@ class BookingsController extends Controller
      */
     public function edit($id)
     {
-        //
+        //Validation of the edit code
         $booking = Booking::find($id);
         return view('pages.vehicleselect')->with('booking',$booking);
         
@@ -90,6 +88,28 @@ class BookingsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request,[
+            'piklocation'=>'required',
+            'pickdate'=>'required','fname'=>'required','lname'=>'required',
+            'addres2'=>'required','addres1'=>'required','nic'=>'required',
+            'email'=>'required','days'=>'required','droplocation'=>'required'
+            ]);
+            //create initial booking
+            $booking =Booking::find($id);
+            $booking->date=$request->input('pickdate');
+            $booking->piklocation=$request->input('piklocation');
+            $booking->droplocation=$request->input('droplocation');
+            $booking->days=$request->input('days');
+            $booking->fname=$request->input('fname');
+            $booking->lname=$request->input('lname');
+            $booking->nic=$request->input('nic');
+            $booking->email=$request->input('email');
+            $booking->address1=$request->input('addres1');
+            $booking->address2=$request->input('addres2');
+    
+            $booking->save();
+            return redirect('/');
+           
     }
 
     /**

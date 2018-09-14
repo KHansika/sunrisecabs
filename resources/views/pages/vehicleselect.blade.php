@@ -1,53 +1,18 @@
 @extends('layouts.app')
 @section('content')
-{{$booking->vtype}}
-
-
-{!! Form::open(['action' => 'BookingsController@store', 'method'=>'POST','class' => 'form-horizontal']) !!}
- 
-<fieldset>
-    
-    <!-- Select vehicle type -->
-    <div class="form-group">
-        <div class="col-lg-10">
-                {!!Form::select('vtype', ['c' => 'Cars', 'v' => 'Vans','b'=>'Buses'], '{{$booking->vtype}}');!!}
-        </div>
-    </div>
-    <!-- Select Pickup Location -->
-    <div class="form-group">
-            <div class="col-lg-10">
-                    {!!Form::select('piklocation', ['Kandy District' => 'Kandy District', 'Kandy City' => 'Kandy City','Kadugannawa' => 'Kadugannawa'], '{{$booking->piklocation}}');!!}
-                </div>
-        </div>
-    <!-- Select Pickup Date -->
-    <div class="form-group">
-            <div class="col-lg-10">
-                    {!!Form::text('{{$booking->date}}')!!}
-            </div>
-        </div>
-
-    <!-- Submit Button -->
-    <div class="form-group">
-        <div class="col-lg-10 col-lg-offset-2">
-            {!! Form::submit('Checkout', ['class' => 'btn btn-primary'] ) !!}
-        </div>
-    </div>
-
-</fieldset>
-
-{!! Form::close()  !!}
-
 {{-- Testing Form --}}
+{{-- date picker scdn --}}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+
 <body class="bg-light">
 
         <div class="container">
           <div class="py-5 text-center">
             <img class="d-block mx-auto mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-            <h2>Checkout form</h2>
-            <p class="lead">Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
-          </div>
-    
-          <div class="row">
+            <h2>Select your Vehicle</h2>
+            {{-- image gallery --}}
+            @include('inc.gallery')
+            <div class="row">
             <div class="col-md-4 order-md-2 mb-4">
               <h4 class="d-flex justify-content-between align-items-center mb-3">
                 <span class="text-muted">Your cart</span>
@@ -98,19 +63,53 @@
               </form>
             </div>
             <div class="col-md-8 order-md-1">
-              <h4 class="mb-3">Billing address</h4>
-              <form class="needs-validation" novalidate>
+              {!!Form:: open(['action'=>['BookingsController@update',$booking->id], 'method'=>'POST','class'=>'needs-validation'])!!}
+              {{-- <form class="needs-validation" action=>['BookingsController@update',$Booking->id] novalidate> --}}
                 <div class="row">
                   <div class="col-md-6 mb-3">
-                    <label for="firstName">First name</label>
-                    <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                    <label for="pickup">Pickup Location (Mark On the Map )</label>
+                    <input type="text" name="piklocation" class="form-control" id="pickup" placeholder="" value="{{$booking->piklocation}}" required>
+                    <div class="invalid-feedback">
+                      Valid Pickup Location is required.
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label for="dropdown">Drop Down Location (Mark On the Map)</label>
+                    <input type="text" name="droplocation" class="form-control" id="dropdown" placeholder="" value="" required>
+                    <div class="invalid-feedback">
+                      Valid Drop Down Loaction is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label for="pickup">Pickup Date and time</label>
+                  <input type="text" name="pickdate" class="form-control" id="datepicker" placeholder="" value="{{$booking->date}}" required>
+                    {{-- Pickup time --}}
+                      
+                    <div class="invalid-feedback">
+                      Valid Pickup Date and time is required.
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label for="lastName">Number Of Days</label>
+                    <input type="number" name="days"class="form-control" id="" min='1'  placeholder="No of Days" value="" required>
+                    <div class="invalid-feedback">
+                      Valid Drop Down Loaction is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label for="fname">First Name</label>
+                    <input type="text" name="fname" class="form-control" id="pickup" placeholder="" value="" required>
                     <div class="invalid-feedback">
                       Valid first name is required.
                     </div>
                   </div>
                   <div class="col-md-6 mb-3">
-                    <label for="lastName">Last name</label>
-                    <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                    <label for="lName">Last Name</label>
+                    <input type="text" name="lname" class="form-control" id="dropdown" placeholder="" value="" required>
                     <div class="invalid-feedback">
                       Valid last name is required.
                     </div>
@@ -118,132 +117,56 @@
                 </div>
     
                 <div class="mb-3">
-                  <label for="username">Username</label>
+                  <label for="nic">NIC Number</label>
                   <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">@</span>
-                    </div>
-                    <input type="text" class="form-control" id="username" placeholder="Username" required>
+                    <input type="text" class="form-control" name="nic" id="nic" placeholder="NIC Number" required>
                     <div class="invalid-feedback" style="width: 100%;">
-                      Your username is required.
+                      Nic is required
                     </div>
                   </div>
                 </div>
+
+                
     
                 <div class="mb-3">
-                  <label for="email">Email <span class="text-muted">(Optional)</span></label>
-                  <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                  <label for="email">Email <span class="text-muted">(To send your invoice)</span></label>
+                  <input type="email" name="email" class="form-control" id="email" placeholder="you@example.com">
                   <div class="invalid-feedback">
                     Please enter a valid email address for shipping updates.
                   </div>
                 </div>
     
                 <div class="mb-3">
-                  <label for="address">Address</label>
-                  <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+                  <label for="address">Address Line 1</label>
+                  <input type="text"  name="addres1"class="form-control" id="address" placeholder="1234 Main St" required>
                   <div class="invalid-feedback">
                     Please enter your shipping address.
-                  </div>
+                  </div>   
                 </div>
-    
                 <div class="mb-3">
-                  <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-                  <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
-                </div>
-    
-                <div class="row">
-                  <div class="col-md-5 mb-3">
-                    <label for="country">Country</label>
-                    <select class="custom-select d-block w-100" id="country" required>
-                      <option value="">Choose...</option>
-                      <option>United States</option>
-                    </select>
-                    <div class="invalid-feedback">
-                      Please select a valid country.
-                    </div>
-                  </div>
-                  <div class="col-md-4 mb-3">
-                    <label for="state">State</label>
-                    <select class="custom-select d-block w-100" id="state" required>
-                      <option value="">Choose...</option>
-                      <option>California</option>
-                    </select>
-                    <div class="invalid-feedback">
-                      Please provide a valid state.
-                    </div>
-                  </div>
-                  <div class="col-md-3 mb-3">
-                    <label for="zip">Zip</label>
-                    <input type="text" class="form-control" id="zip" placeholder="" required>
-                    <div class="invalid-feedback">
-                      Zip code required.
-                    </div>
-                  </div>
+                  <label for="address2">Address Line 2 <span class="text-muted">(Optional)</span></label>
+                  <input type="text"  name="addres2"class="form-control" id="address2" placeholder="Apartment or suite">
                 </div>
                 <hr class="mb-4">
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="same-address">
-                  <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
-                </div>
                 <div class="custom-control custom-checkbox">
                   <input type="checkbox" class="custom-control-input" id="save-info">
-                  <label class="custom-control-label" for="save-info">Save this information for next time</label>
-                </div>
-                <hr class="mb-4">
-    
-                <h4 class="mb-3">Payment</h4>
-    
-                <div class="d-block my-3">
-                  <div class="custom-control custom-radio">
-                    <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-                    <label class="custom-control-label" for="credit">Credit card</label>
-                  </div>
-                  <div class="custom-control custom-radio">
-                    <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-                    <label class="custom-control-label" for="debit">Debit card</label>
-                  </div>
-                  <div class="custom-control custom-radio">
-                    <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
-                    <label class="custom-control-label" for="paypal">PayPal</label>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6 mb-3">
-                    <label for="cc-name">Name on card</label>
-                    <input type="text" class="form-control" id="cc-name" placeholder="" required>
-                    <small class="text-muted">Full name as displayed on card</small>
-                    <div class="invalid-feedback">
-                      Name on card is required
-                    </div>
-                  </div>
-                  <div class="col-md-6 mb-3">
-                    <label for="cc-number">Credit card number</label>
-                    <input type="text" class="form-control" id="cc-number" placeholder="" required>
-                    <div class="invalid-feedback">
-                      Credit card number is required
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-3 mb-3">
-                    <label for="cc-expiration">Expiration</label>
-                    <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-                    <div class="invalid-feedback">
-                      Expiration date required
-                    </div>
-                  </div>
-                  <div class="col-md-3 mb-3">
-                    <label for="cc-cvv">CVV</label>
-                    <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-                    <div class="invalid-feedback">
-                      Security code required
-                    </div>
-                  </div>
-                </div>
-                <hr class="mb-4">
+                </div>               
                 <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+              {{Form::hidden('_method','PUT')}}
               </form>
             </div>
           </div>
 </div>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+  </script>
+  {{-- <script>
+    $(function() {
+      $( "#datepicker2" ).datepicker();
+    });
+    </script> --}}
 @endsection 
