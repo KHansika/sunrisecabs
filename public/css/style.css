@@ -1,0 +1,27 @@
+/* header style */
+body{
+padding-top:3.5rem; 
+}
+html,
+body,
+header,
+#intro {
+    height: 100%;
+}
+
+#intro {
+    background: url("../img/cover/bmw.jpg")no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.form-control{
+    color:#0c0c0c;
+}
+.card{
+    background-color: transparent;
+}
+.form-intro{
+    margin-top:100px;
+}
