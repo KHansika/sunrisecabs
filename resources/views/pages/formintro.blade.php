@@ -3,6 +3,7 @@
 <header>
 <!--Navbar-->
 @section('content')
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 
 {!! Form::open(['action' => 'BookingsController@store', 'method'=>'POST','class' => 'form-intro align-items-center justify-content-center form-horizontal']) !!}
      
@@ -21,7 +22,7 @@
     <!-- Select Pickup Date -->
     <div class="form-group">
             <div class="col-lg-10">
-                    {!!Form::text('date','',['class' => 'form-control','placeholder'=>'Pickup Date'])!!}
+                    {!!Form::text('date','',['class' => 'form-control','placeholder'=>'Pickup Date','id'=>'datepicker'])!!}
             </div>
         </div>
 
@@ -33,5 +34,12 @@
     </div>
 
 {!! Form::close()  !!}
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+  </script>
 
 </div>
