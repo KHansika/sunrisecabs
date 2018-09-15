@@ -91,7 +91,7 @@ class BookingsController extends Controller
         $this->validate($request,[
             'piklocation'=>'required',
             'pickdate'=>'required','fname'=>'required','lname'=>'required',
-            'addres2'=>'required','addres1'=>'required','nic'=>'required',
+            'addres1'=>'required','nic'=>'required',
             'email'=>'required','days'=>'required','droplocation'=>'required'
             ]);
             //create initial booking

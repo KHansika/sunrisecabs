@@ -150,7 +150,7 @@
                 <div class="custom-control custom-checkbox">
                   <input type="checkbox" class="custom-control-input" id="save-info">
                 </div>               
-                <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Place Your Booking</button>
               {{Form::hidden('_method','PUT')}}
               </form>
             </div>
