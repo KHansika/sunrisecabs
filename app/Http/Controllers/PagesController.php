@@ -28,4 +28,7 @@ class PagesController extends Controller
     public function vehicleselect(){
         return view('pages.vehicleselect');
     }
+    public function vehiclesent(){
+        return view('admin.pages.sentvehicle');
+    }
 }
