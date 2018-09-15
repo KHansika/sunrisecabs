@@ -18,5 +18,10 @@ Route::get('/contact','PagesController@contact');
 Route::get('/services','PagesController@services');
 Route::get('/team','PagesController@team');
 Route::get('/vehicleselect','PagesController@vehicleselect');
+Route::get('/sent','PagesController@vehiclesent');
+Route::get('/sent/{id}','BookingsController@update2');
+
+
+
 
  Route::resource('booking','BookingsController');
