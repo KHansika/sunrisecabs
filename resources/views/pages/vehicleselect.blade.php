@@ -81,7 +81,7 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-6 mb-3">
+                  <div class="col-md-4 mb-2">
                     <label for="pickup">Pickup Date and time</label>
                   <input type="text" name="pickdate" class="form-control" id="datepicker" placeholder="" value="{{$booking->date}}" required>
                     {{-- Pickup time --}}
@@ -90,13 +90,21 @@
                       Valid Pickup Date and time is required.
                     </div>
                   </div>
-                  <div class="col-md-6 mb-3">
+                  <div class="col-md-4 mb-2">
+                    <label for="piktime">Pickup Time</label>
+                    <input type="time" name="piktime"class="form-control" id=" " placeholder="" value="" >
+                    <div class="invalid-feedback">
+                      Valid Drop Down Loaction is required.
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-2">
                     <label for="lastName">Number Of Days</label>
                     <input type="number" name="days"class="form-control" id="" min='1'  placeholder="No of Days" value="" required>
                     <div class="invalid-feedback">
                       Valid Drop Down Loaction is required.
                     </div>
                   </div>
+
                 </div>
                 <div class="row">
                   <div class="col-md-6 mb-3">
@@ -163,9 +171,5 @@
     $( "#datepicker" ).datepicker();
   });
   </script>
-  {{-- <script>
-    $(function() {
-      $( "#datepicker2" ).datepicker();
-    });
-    </script> --}}
+  
 @endsection 
