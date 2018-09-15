@@ -106,10 +106,16 @@ class BookingsController extends Controller
             $booking->email=$request->input('email');
             $booking->address1=$request->input('addres1');
             $booking->address2=$request->input('addres2');
+            $booking->piktime=$request->input('pickdate');
+
     
             $booking->save();
             return redirect('/');
            
+    }
+    public function update2(Request $request, $id){
+        
+
     }
 
     /**
