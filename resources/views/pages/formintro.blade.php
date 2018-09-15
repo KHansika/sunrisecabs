@@ -10,7 +10,7 @@
     <!-- Select vehicle type -->
     <div class="form-group">
         <div class="col-lg-10">
-                {!!Form::select('vtype', ['s'=>'Select Vehicle Type','cars' => 'Cars', 'vans' => 'Vans','buses'=>'Buses'], 's',['class'=>'form-control'])!!}
+                {!!Form::select('vtype', ['s'=>'Select Vehicle Type','Cars' => 'Cars', 'Vans' => 'Vans','Buses'=>'Buses'], 's',['class'=>'form-control'])!!}
         </div>
     </div>
     <!-- Select Pickup Location -->
