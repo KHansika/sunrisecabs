@@ -8,6 +8,10 @@ class VehiclesController extends Controller
 {
     //
     public function index(){
-        return view('admin.pages.vehiclefleet');
+        $vehicles= Vehicle::all();
+        return view('admin.pages.vehiclefleet')->with('vehicle',$vehicles);
+    }
+    public function addvehicle(){
+        return view('admin.pages.addvehicle');
     }
 }

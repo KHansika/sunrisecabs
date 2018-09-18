@@ -16,23 +16,23 @@
               
             </div>
             <h1 class="d-flex justify-content-center">Viewed Orders<span class="badge badge-secondary">Scheduled</span></h1>
-                            @if(count($bookings)>0)
-                                @foreach ($bookings as $booking)
+                            @if(count($vehicle)>0)
+                                @foreach ($vehicle as $vehicle)
                             <div class= "card">
                                             
                             <div class= "card-body">
                                     <h2>Order <span class="badge badge-secondary">Scheduled</span></h2>
                                 <div class="row">
                                         <div class="col-md-6">
-                                        <h5 class="card-title"> Vehicle Type: {{$booking->vtype}}</h5>
-                                        <h5 class="card-title"> Pickup Date :{{$booking->date}}</h5>
-                                        <h5 class="card-title">Pickup Time:{{$booking->piklocation}}</h5>
-                                        <h5 class="card-title">Pickup Location: {{$booking->piklocation}}</h5>
-                                        <h5 class="card-title">Drop Down Location:{{$booking->droplocation}}</h5>                                    
+                                        <h5 class="card-title"> Vehicle Reg No: {{$vehicle->regno}}</h5>
+                                        <h5 class="card-title"> Plate No :{{$vehicle->plateno}}</h5>
+                                        <h5 class="card-title">Vehicle Type:{{$vehicle->type}}</h5>
+                                        <h5 class="card-title">Vehicle Price: {{$vehicle->price}}</h5>
+                                        <h5 class="card-title">AC or Non A/C:{{$vehicle->category}}</h5>                                    
                                       </div>
                                     <div class="col-md-6">
                                             <img src="https://via.placeholder.com/250x200" alt="..." class="img-thumbnail"> <br>
-                                      <a href="/update/{{$booking->id}}">
+                                      <a href=" ">
                                         <button type="button" class="btn btn-primary "> 
                                           Send A Vehicle</button>
                                       </a>

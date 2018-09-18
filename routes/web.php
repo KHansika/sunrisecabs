@@ -19,9 +19,17 @@ Route::get('/services','PagesController@services');
 Route::get('/team','PagesController@team');
 Route::get('/vehicleselect','PagesController@vehicleselect');
 Route::get('/sent','PagesController@vehiclesent');
-Route::get('/sent/{id}','BookingsController@update2');
-
-
-
-
+Route::get('/update/{id}','UpdateController@update');
+Route::get('/neworders','AdminpagesController@viewit');
+Route::get('/sentvehicles','SentvehiclesController@index');
  Route::resource('booking','BookingsController');
+
+ Route::get('/vehicles','VehiclesController@index');
+ Route::get('/addvehicles','VehiclesController@addvehicle');
+
+ Route::get('/vehicleowners','VehicleownersController@index');
+ Route::get('/addvehicleowners','VehicleownersController@addvehicleowners');
+
+
+
+//  Route::resource('vehicleowners','VehicleownersController');
