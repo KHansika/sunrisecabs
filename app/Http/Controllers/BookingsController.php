@@ -17,7 +17,7 @@ class BookingsController extends Controller
     public function index()
     {
         //view for the admin
-        $bookings= Booking::all();
+        $bookings= Booking::where('status',0)->get();
         return view('admin.adminhome')->with('bookings',$bookings);
     }
 
