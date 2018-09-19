@@ -16,14 +16,17 @@
     <!-- Select Pickup Location -->
     <div class="form-group">
             <div class="col-lg-10">
-                    {!!Form::select('piklocation', ['Kandy District' => 'Kandy District', 'Kandy City' => 'Kandy City','Kadugannawa' => 'Kadugannawa','A'=>'Pickup Location'], 'A',['class'=>'form-control'])!!}
+                    {!!Form::select('piklocation', ['Kandy District' => 'Kandy District', 'Kandy City' => 'Kandy City','Kadugannawa' => 'Kadugannawa','A'=>'Select Pickup Location'], 'A',['class'=>'form-control'])!!}
                 </div>
         </div>
     <!-- Select Pickup Date -->
     <div class="form-group">
             <div class="col-lg-10">
-                    {!!Form::text('date','',['class' => 'form-control','placeholder'=>'Pickup Date','id'=>'datepicker'])!!}
+                    {!!Form::text('date','',['class' => 'form-control','placeholder'=>'Pickup Date','id'=>'datepicker' ])!!}
             </div>
+        </div>
+        <div class="form-group">
+            @include('inc.messages')
         </div>
 
     <!-- Submit Button -->
