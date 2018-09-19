@@ -21,4 +21,5 @@
 <body>
     @include('inc.nav')
     @yield('content')
+    
 </body>
