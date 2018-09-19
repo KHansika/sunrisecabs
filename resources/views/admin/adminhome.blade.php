@@ -1,6 +1,5 @@
 @extends('layouts.admin')
 @section('content')
-<div class="container-fluid">
         <div class="row">
           @include('admin.pages.adminsidenav')
   
@@ -16,8 +15,7 @@
               
             </div>
                             This is admin home
-                                
-</div>
+                                </div>
                                     
                 
           
