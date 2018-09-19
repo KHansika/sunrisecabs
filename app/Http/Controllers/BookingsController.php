@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Booking;
 use DB;
 use Illuminate\Support\Facades\Redirect;
+use Validator, Input; 
+
 
 class BookingsController extends Controller
 {
@@ -36,20 +38,36 @@ class BookingsController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     * 
      */
     public function store(Request $request)
     {
         //
         $this->validate($request,['vtype'=>'required',
         'piklocation'=>'required','date'=>'required']);
-        //create initial booking
-        $booking =new Booking;
-        $booking->vtype=$request->input('vtype');
-        $booking->piklocation=$request->input('piklocation');
-        $booking->date=$request->input('date');
+        // custom error messages
 
-        $booking->save();
-        return redirect()->route('booking.edit', $booking->id);
+        // validator
+        Validator::make($request->all(), [
+            'date' => 'required|date|'
+        ])->validate();
+
+        if($request->input('vtype')==='s'){
+            return Redirect::back();
+        }
+         elseif($request->input('piklocation')==='A'){
+            return Redirect::back();
+         }
+        else{//create initial booking
+            $booking =new Booking;
+            $booking->vtype=$request->input('vtype');
+            $booking->piklocation=$request->input('piklocation');
+            $booking->date=$request->input('date');
+    
+            $booking->save();
+            return redirect()->route('booking.edit', $booking->id);
+        }
+        
 
     }
 
