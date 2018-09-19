@@ -15,13 +15,13 @@
               </div>
               
             </div>
-            <h1 class="d-flex justify-content-center">Viewed Orders<span class="badge badge-secondary">Scheduled</span></h1>
+            <h1 class="d-flex justify-content-center">Our Vehicle Fleet</h1>
                             @if(count($vehicle)>0)
                                 @foreach ($vehicle as $vehicle)
                             <div class= "card">
                                             
                             <div class= "card-body">
-                                    <h2>Order <span class="badge badge-secondary">Scheduled</span></h2>
+                                    <h2>Vehicle <span class="badge badge-secondary">Added</span></h2>
                                 <div class="row">
                                         <div class="col-md-6">
                                         <h5 class="card-title"> Vehicle Reg No: {{$vehicle->regno}}</h5>
