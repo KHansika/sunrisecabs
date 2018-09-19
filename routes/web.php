@@ -22,6 +22,8 @@ Route::get('/sent','PagesController@vehiclesent');
 Route::get('/update/{id}','UpdateController@update');
 Route::get('/neworders','AdminpagesController@viewit');
 Route::get('/sentvehicles','SentvehiclesController@index');
+Route::get('/adminlogin','AdminpagesController@adminlogin')->middleware('auth');
+
  Route::resource('booking','BookingsController');
 
  Route::get('/vehicles','VehiclesController@index');
@@ -30,6 +32,17 @@ Route::get('/sentvehicles','SentvehiclesController@index');
  Route::get('/vehicleowners','VehicleownersController@index');
  Route::get('/addvehicleowners','VehicleownersController@addvehicleowners');
 
+ Route::POST('/addvehicleowners',['uses'=>'VehicleownersController@tostore']);
+ Route::POST('/addvehicles',['uses'=>'VehiclesController@tostore']);
+
+
+
+ Route::get('/login','AdminpagesController@login');
+
 
 
 //  Route::resource('vehicleowners','VehicleownersController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
