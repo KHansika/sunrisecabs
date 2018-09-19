@@ -9,7 +9,8 @@ class VehicleownersController extends Controller
 {
     //
     public function index(){
-        return view('admin.pages.vehicleowner');
+        $owners= Vehicleowner::all();
+        return view('admin.pages.vehicleowner')->with('owner',$owners);
     }
     public function addvehicleowners(){
         return view('admin.pages.addowner');

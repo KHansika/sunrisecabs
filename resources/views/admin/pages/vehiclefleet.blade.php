@@ -31,12 +31,12 @@
                                         <h5 class="card-title">AC or Non A/C:{{$vehicle->category}}</h5>                                    
                                       </div>
                                     <div class="col-md-6">
-                                            <img src="https://via.placeholder.com/250x200" alt="..." class="img-thumbnail"> <br>
+                                    <img src="/storage/cover_images/{{$vehicle->cover_image}}" alt="..." class="img-thumbnail" width="250" height="150"> <br>
                                       <a href=" ">
                                         <button type="button" class="btn btn-primary "> 
-                                          Send A Vehicle</button>
+                                         View Details</button>
                                       </a>
-                                            <button type="button" class="btn btn-primary ">View Cutomer Details</button>
+                                            <button type="button" class="btn btn-primary ">Remove Vehicle</button>
 
                                         </div>
                                 </div>

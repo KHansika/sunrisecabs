@@ -18,7 +18,7 @@
             <div class="container">
                 <div class="col-md-7">
                         <h1 class="d-flex justify-content-center">Add Vehicle<span class="badge badge-secondary">New</span></h1>
-                    {!!Form::open(['action' =>'VehiclesController@tostore','method'=>'POST'])!!}
+                    {!!Form::open(['action' =>'VehiclesController@tostore','method'=>'POST','enctype'=>'multipart/form-data'])!!}
 
                     {{Form::label('type', 'Type')}}
                     {{Form::text('type','',['class'=>'form-control','placeholder'=>'Vehicle Type','required'])}}
@@ -30,7 +30,10 @@
                     {{Form::number('regno','',['class'=>'form-control','placeholder'=>'Vehicle Registration Number','required'])}}
                     {{Form::label('plateno', 'Vehicle Plate Number')}}
                     {{Form::text('plateno','',['class'=>'form-control','placeholder'=>'Vehicle Plate Number','required'])}}
-                      {{Form::submit('Submit',['class'=>'btn btn-primary'])}}
+                    <div class="form-group">
+                        {{Form::file('cover_image')}}    
+                    </div>  
+                    {{Form::submit('Submit',['class'=>'btn btn-primary'])}}
                      {!! Form::close() !!}
                 </div>
                 
