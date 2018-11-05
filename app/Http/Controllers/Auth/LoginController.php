@@ -25,7 +25,25 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    // protected $redirectTo = '/home';
+
+    protected function authenticated($request,$user){
+        if($user->role =='Admin'){
+            return redirect('/home');
+        }
+        elseif($user->role=='Manager'){
+            return redirect('/manager');
+        }
+        elseif($user->role=='Vehicle Owner'){
+            return redirect('/vowner');
+        }
+        elseif($user->role=='Reception'){
+            return redirect('/reception');
+        }
+        else{
+            return redirect ('/login1');
+        }
+    }
 
     /**
      * Create a new controller instance.
