@@ -24,5 +24,15 @@ class HomeController extends Controller
     public function index()
     {
         return view('admin.adminhome');
+    
+        // $usertype=auth()->user()->roll;
+        // return $usertype;
+
+        // if($usertype=='Admin'){
+        //     return view('admin.adminhome');
+        // }elseif($usertype=='Manager'){
+        //     return view('admin.adminhome2');
+        // }
+        
     }
 }

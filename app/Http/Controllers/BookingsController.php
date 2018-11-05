@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Booking;
+use App\Customer;
 use DB;
 use Illuminate\Support\Facades\Redirect;
 use Validator, Input; 
@@ -19,8 +20,8 @@ class BookingsController extends Controller
     public function index()
     {
         //view for the admin
-        $bookings= Booking::where('status',0)->get();
-        return view('admin.adminhome')->with('bookings',$bookings);
+        // $bookings= Booking::where('status',0)->get();
+        // return view('admin.adminhome')->with('bookings',$bookings);
     }
 
     /**
@@ -46,6 +47,7 @@ class BookingsController extends Controller
         $this->validate($request,['vtype'=>'required',
         'piklocation'=>'required','date'=>'required']);
         // custom error messages
+        // 'regex:(foo|bar|baz)'
 
         // validator
         Validator::make($request->all(), [
@@ -53,19 +55,21 @@ class BookingsController extends Controller
         ])->validate();
 
         if($request->input('vtype')==='s'){
-            return Redirect::back();
+            return Redirect::back()->with('error','Valid Vehicle Type is required');
         }
          elseif($request->input('piklocation')==='A'){
-            return Redirect::back();
+            return Redirect::back()->with('error','Valid Pick Location isRequired');
          }
         else{//create initial booking
             $booking =new Booking;
-            $booking->vtype=$request->input('vtype');
+            $customer=new Customer;
+            // $booking->vtype=$request->input('vtype');
             $booking->piklocation=$request->input('piklocation');
             $booking->date=$request->input('date');
-    
+            $customer=new Customer;
             $booking->save();
-            return redirect()->route('booking.edit', $booking->id);
+            $customer->save();
+            return redirect()->route('booking.edit', $booking->id,$customer->id);
         }
         
 
@@ -88,11 +92,12 @@ class BookingsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id,$id2)
     {
         //Validation of the edit code
         $booking = Booking::find($id);
-        return view('pages.vehicleselect')->with('booking',$booking);
+        $customer=Customer::find($id2);
+        return view('pages.vehicleselect')->with('booking',$booking)->with('customer',$customer);
         
     }
 
@@ -118,17 +123,21 @@ class BookingsController extends Controller
             $booking->piklocation=$request->input('piklocation');
             $booking->droplocation=$request->input('droplocation');
             $booking->days=$request->input('days');
-            $booking->fname=$request->input('fname');
-            $booking->lname=$request->input('lname');
-            $booking->nic=$request->input('nic');
-            $booking->email=$request->input('email');
-            $booking->address1=$request->input('addres1');
-            $booking->address2=$request->input('addres2');
-            $booking->piktime=$request->input('pickdate');
-
-    
             $booking->save();
             return redirect('/');
+            
+            $booking->piktime=$request->input('pickdate');
+            //update into customer table
+            $customer=new Customer;
+            $customer->fname=$request->input('fname');
+            $customer->lname=$request->input('lname');
+            $customer->nic=$request->input('nic');
+            $customer->email=$request->input('email');
+            $customer->address1=$request->input('addres1');
+            $customer->address2=$request->input('addres2');
+
+    
+            
            
     }
     public function update2(Request $request, $id){
