@@ -8,8 +8,9 @@
 
         <div class="container">
           <div class="py-5 text-center">
-            <h2>Select your Vehicle</h2>
+            <h2>Search your Vehicle</h2>
             {{-- image gallery --}}
+            
             @include('inc.gallery')
             <div class="row">
             <div class="col-md-4 order-md-2 mb-4">
@@ -169,6 +170,12 @@
   <script>
   $(function() {
     $( "#datepicker" ).datepicker();
+  });
+  $(function() {
+    $( "#datepicker1" ).datepicker();
+  });
+  $(function() {
+    $( "#datepicker2" ).datepicker();
   });
   </script>
   
