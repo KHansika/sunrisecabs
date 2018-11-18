@@ -42,7 +42,17 @@ Route::get('/adminlogin','AdminpagesController@adminlogin')->middleware('auth');
 
 
 //  Route::resource('vehicleowners','VehicleownersController');
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+
+Route::get('/manager','ManagerController@index');
+Route::get('/vowner','VehicleownerController@index');
+Route::get('/reception','ReceptionController@index');
+
+//search function
+Route::POST('/searchvehicles',['uses'=>'SearchController@vehiclesearch']);
+
+
+
+

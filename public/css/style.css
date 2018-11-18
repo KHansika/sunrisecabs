@@ -28,3 +28,8 @@ header,
 .text-center{
     margin-top:70px;
 }
+
+.vehicle-image{
+    width:250px;
+    height:200px;
+}

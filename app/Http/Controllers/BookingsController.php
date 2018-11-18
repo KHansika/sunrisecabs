@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Booking;
 use App\Customer;
+use App\Vehicle;
 use DB;
 use Illuminate\Support\Facades\Redirect;
 use Validator, Input; 
@@ -62,14 +63,14 @@ class BookingsController extends Controller
          }
         else{//create initial booking
             $booking =new Booking;
-            $customer=new Customer;
+            // $customer=new Customer;
             // $booking->vtype=$request->input('vtype');
             $booking->piklocation=$request->input('piklocation');
             $booking->date=$request->input('date');
             $customer=new Customer;
             $booking->save();
-            $customer->save();
-            return redirect()->route('booking.edit', $booking->id,$customer->id);
+            // $customer->save();
+            return redirect()->route('booking.edit', $booking->id);
         }
         
 
@@ -92,12 +93,12 @@ class BookingsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id,$id2)
+    public function edit($id)
     {
         //Validation of the edit code
         $booking = Booking::find($id);
-        $customer=Customer::find($id2);
-        return view('pages.vehicleselect')->with('booking',$booking)->with('customer',$customer);
+        $vehicles=Vehicle::all();
+        return view('pages.vehicleselect')->with('booking',$booking)->with('vehicles',$vehicles);
         
     }
 
