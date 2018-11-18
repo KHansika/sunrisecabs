@@ -41,6 +41,28 @@
      
          {{-- testing output --}}
          <div class="container">
+             @foreach ($vehicles->chunk(3) as $vehicleChunk)
+             <div class="row">
+                <div class="card-deck mb-3 text-center">
+                    @foreach ($vehicleChunk as $vehicles)
+                    <div class="card mb-5 shadow-sm">
+                            <div class="card-header">
+                                    <h4 class="my-0 font-weight-normal">Enterprise</h4>
+                            </div>
+                        <img class="card-img-top vehicle-image" src="/storage/cover_images/{{$vehicles->cover_image}}">
+                            
+                            <div class="card-body">
+                              <h1 class="card-title pricing-card-title">$20 <small class="text-muted">/ Day</small></h1>
+                              <button type="button" class="btn btn-lg btn-block btn-primary">Select Vehicle</button>
+                            </div>
+                    </div>
+
+                    @endforeach
+                </div>
+            </div>    
+             @endforeach
+                 
+             {{-- @endforeach
                 @if(isset($details))
                     <p> The Search results for your query <b> {{ $query }} </b> are :</p>
                 <h2>Sample User details</h2>
@@ -61,9 +83,9 @@
                     </tbody>
                 </table>
                 @endif
-            </div>
+            </div> --}}
          {{-- testing output --}}
-        <div class="card-deck mb-3 text-center">
+        {{-- <div class="card-deck mb-3 text-center">
                 <div class="card mb-5 shadow-sm">
                         <div class="card-header">
                                 <h4 class="my-0 font-weight-normal">Enterprise</h4>
@@ -101,4 +123,4 @@
           
           
         </div>
-        
+         --}}

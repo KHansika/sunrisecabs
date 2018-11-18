@@ -5,6 +5,7 @@
 @section('content')
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 
+
 {!! Form::open(['action' => 'BookingsController@store', 'method'=>'POST','class' => 'form-intro align-items-center justify-content-center form-horizontal']) !!}
      
     <!-- Select vehicle type -->
