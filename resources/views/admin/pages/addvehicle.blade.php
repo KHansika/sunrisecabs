@@ -19,16 +19,26 @@
                         <h1 class="d-flex justify-content-center">Add Vehicle<span class="badge badge-secondary">New</span></h1>
                         {!!Form::open(['action' =>'VehiclesController@tostore','method'=>'POST','enctype'=>'multipart/form-data'])!!}
 
-                        {{Form::label('type', 'Type')}}
-                        {{Form::text('type','',['class'=>'form-control','placeholder'=>'Vehicle Type','required'])}}
-                        {{Form::label('price', 'Price Per Day')}}
-                        {{Form::number('price','',['class'=>'form-control','placeholder'=>'Price Perday','required'])}}
-                        {{Form::label('category', 'Category')}}
-                        {{Form::text('category','',['class'=>'form-control','placeholder'=>'A/C or non A/C','required'])}}
-                        {{Form::label('regno', 'Registration Number')}}
-                        {{Form::number('regno','',['class'=>'form-control','placeholder'=>'Vehicle Registration Number','required'])}}
-                        {{Form::label('plateno', 'Vehicle Plate Number')}}
-                        {{Form::text('plateno','',['class'=>'form-control','placeholder'=>'Vehicle Plate Number','required'])}}
+                        <div class="form-group">
+                            {{Form::label('type', 'Type')}}
+                            {{Form::text('type','',['class'=>'form-control','placeholder'=>'Vehicle Type','required'])}}
+                        </div>
+                        <div class="form-group">
+                            {{Form::label('price', 'Price Per Day')}}
+                            {{Form::number('price','',['class'=>'form-control','placeholder'=>'Price Perday','required'])}}
+                        </div>
+                        <div class="form-group">
+                            {{Form::label('category', 'Category')}}
+                            {{Form::text('category','',['class'=>'form-control','placeholder'=>'A/C or non A/C','required'])}}
+                        </div>
+                        <div class="form-group">
+                            {{Form::label('regno', 'Registration Number')}}
+                            {{Form::number('regno','',['class'=>'form-control','placeholder'=>'Vehicle Registration Number','required'])}}
+                        </div>
+                        <div class="form-group">
+                            {{Form::label('plateno', 'Vehicle Plate Number')}}
+                            {{Form::text('plateno','',['class'=>'form-control','placeholder'=>'Vehicle Plate Number','required'])}}
+                        </div>
                         <div class="form-group">
                             {{Form::file('cover_image')}}
                         </div>
