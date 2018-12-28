@@ -10,23 +10,22 @@
                                                 <div class="row">            
                                                 <div class="col-md-4">
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" name="vtype"
-                                                        placeholder="Vehicle Type">
+                                                        {!!Form::select('vtype', ['s'=>'Select Vehicle Type','Cars' => 'Cars', 'Vans' => 'Vans','Buses'=>'Buses'], 's',['class'=>'form-control'])!!}
                                                         <input type="hidden" class="form-control" name="bookid"
                                                 value="{{$booking->id}}">
                                                 </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" id="datepicker1"name="startdate"
-                                                            placeholder="Start Date"> 
+                                                            {{-- <input placeholder="Date" class="textbox-n" type="text" onfocusin="(this.type='date')" onfocusout="(this.type='text')"  id="date">  --}}
+                                                            <input type="text" value="" class="form-control" id="datepicker2" onfocusin="(this.type='date')" placeholder="Start Date" onfocusout="(this.type='text')" name="startdate">
                                                     <input name="id" type="hidden" value="{{$booking->id}}">       
                                                         </span>
                                                     </div>
                                                 </div>
                                         <div class="col-md-4">
                                                         <div class="input-group">
-                                                            <input type="text" class="form-control" id="datepicker2"name="returndate"
+                                                            <input type="text" placeholder="SelectReturn Date"value="" class="form-control" onfocusin="(this.type='date')" onfocusout="(this.type='text')" id="datepicker2" name="returndate"
                                                                 placeholder="Return Date"> <span class="input-group-btn">
                                                                         
                                                                 <button type="submit" class="btn btn-default">
@@ -101,69 +100,20 @@
      });    
 
   </script> 
-   
-            <!-- load jQuery -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script type="text/javascript" src="{{asset('js/jquery.datetimepicker.full.min.js')}}"></script>
+
+  <script>
+     
+        $('#startdate').datetimepicker({
+        format: 'Y/m/d',       
+        inline:true,
+        timepicker: false,
+        minDate:true,
     
-                 
-             {{-- @endforeach
-                @if(isset($details))
-                    <p> The Search results for your query <b> {{ $query }} </b> are :</p>
-                <h2>Sample User details</h2>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Piklocation</th>
-                            <th>No Of days</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($details as $user)
-                        <tr>
-                            <td>{{$user->piklocation}}</td>
-                            <td>{{$user->days}}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-                @endif
-            </div> --}}
-         {{-- testing output --}}
-        {{-- <div class="card-deck mb-3 text-center">
-                <div class="card mb-5 shadow-sm">
-                        <div class="card-header">
-                                <h4 class="my-0 font-weight-normal">Enterprise</h4>
-                        </div>
-                        <img class="card-img-top" src="https://via.placeholder.com/250x200" alt="Card image cap">
-                        
-                        <div class="card-body">
-                          <h1 class="card-title pricing-card-title">$20 <small class="text-muted">/ Day</small></h1>
-                          <button type="button" class="btn btn-lg btn-block btn-primary">Select Vehicle</button>
-                        </div>
-                </div>
-                <div class="card mb-5 shadow-sm">
-                        <div class="card-header">
-                                <h4 class="my-0 font-weight-normal">Enterprise</h4>
-                        </div>
-                        <img class="card-img-top" src="https://via.placeholder.com/250x200" alt="Card image cap">
-                        
-                        <div class="card-body">
-                          <h1 class="card-title pricing-card-title">$20 <small class="text-muted">/ Day</small></h1>
-                          <button type="button" class="btn btn-lg btn-block btn-primary">Select Vehicle</button>
-                        </div>
-                </div>
-                <div class="card mb-5 shadow-sm">
-                        <div class="card-header">
-                                <h4 class="my-0 font-weight-normal">Enterprise</h4>
-                        </div>
-                        <img class="card-img-top" src="https://via.placeholder.com/250x200" alt="Card image cap">
-                        
-                        <div class="card-body">
-                          <h1 class="card-title pricing-card-title">$20 <small class="text-muted">/ Day</small></h1>
-                          <button type="button" class="btn btn-lg btn-block btn-primary">Select Vehicle</button>
-                        </div>
-                </div>
-            
-          
-          
-        </div>
-         --}}
+        });
+        
+        
+    
+    </script>
+   
