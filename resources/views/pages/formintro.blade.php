@@ -23,7 +23,10 @@
     <!-- Select Pickup Date -->
     <div class="form-group">
             <div class="col-lg-10">
-                    {!!Form::text('date','',['class' => 'form-control','placeholder'=>'Pickup Date','id'=>'datepicker' ])!!}
+                    {!!Form::text('date','',['class' => 'form-control datetimepicker','value'=>'2019/12/03','placeholder'=>'Select a Pickup Date','id'=>'datepicker1' ,'readonly' ])!!}
+            <input  class="form-control" id='input-val13' name='date'type="text" value="29 Apr">
+                    {{-- {!!Form::text('date','',['class' => 'form-control datetimepicker','placeholder'=>'Pickup Date','id'=>'datepicker' ])!!} --}}
+
             </div>
         </div>
         <div class="form-group">
@@ -38,14 +41,26 @@
     </div>
 
 {!! Form::close()  !!}
-<script type="text/javascript" src="{{asset('js/jquery.datetimepicker.full.min.js')}}"></script>
 
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-  <script>
-    $('#datepicker').datetimepicker({
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="{{asset('js/jquery.datetimepicker.full.min.js')}}"></script>
+<script>
+     
+    $('#input-val13').datetimepicker({
+    format: 'Y-m-d',       
     inline:true,
+    timepicker: false,
+    minDate:true,
+    onSelectDate: function () {
+        $date=$('#input-val13').val();
+document.getElementById("datepicker1").value=$date;
+
+}
+
     });
-    </script>
+    
+    
+
+</script>
 
 </div>
