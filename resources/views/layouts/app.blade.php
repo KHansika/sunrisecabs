@@ -24,7 +24,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/jquery.datetimepicker.min.css')}}">
     <!-- full datetime picker -->
     <script type="text/javascript" src="{{asset('js/jquery.datetimepicker.full.min.js')}}"></script>
-
+    
 </head>
 <body>
     @include('inc.nav')
