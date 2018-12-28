@@ -62,18 +62,15 @@ class BookingsController extends Controller
             return Redirect::back()->with('error','Valid Pick Location isRequired');
          }
         else{//create initial booking
+            $customer=new Customer;
+            $customer->save();
             $booking =new Booking;
-            // $customer=new Customer;
-            // $booking->vtype=$request->input('vtype');
             $booking->piklocation=$request->input('piklocation');
             $booking->date=$request->input('date');
-            $customer=new Customer;
+            $booking->customer_id=$customer->id;
             $booking->save();
-            // $customer->save();
             return redirect()->route('booking.edit', $booking->id);
         }
-        
-
     }
 
     /**
@@ -124,27 +121,45 @@ class BookingsController extends Controller
             $booking->piklocation=$request->input('piklocation');
             $booking->droplocation=$request->input('droplocation');
             $booking->days=$request->input('days');
+            $booking->topay=$request->input('perday')*$request->input('days');
             $booking->save();
-            return redirect('/');
-            
-            $booking->piktime=$request->input('pickdate');
-            //update into customer table
-            $customer=new Customer;
+            //Updating the customer table
+            $customerid=$booking->customer_id;
+            $customer=Customer::find($customerid);
             $customer->fname=$request->input('fname');
             $customer->lname=$request->input('lname');
             $customer->nic=$request->input('nic');
-            $customer->email=$request->input('email');
-            $customer->address1=$request->input('addres1');
-            $customer->address2=$request->input('addres2');
+            $customer->email=$request->input('email'); 
+            $customer->address1=$request->input('addres2');
+            $customer->address2=$request->input('addres1');
+            $customer->save();
+            return view('pages.checkout')->with('booking',$booking)->with('customer',$customer);
 
+            // return redirect('pages.checkout');
+            // return redirect()->route('billing', $booking->id);
+
+
+            // $booking->piktime=$request->input('pickdate');
+            // //update into customer table
+            // $customer=new Customer;
+            // $customer->fname=$request->input('fname');
+            // $customer->lname=$request->input('lname');
+            // $customer->nic=$request->input('nic');
+            // $customer->email=$request->input('email');
+            // $customer->address1=$request->input('addres1');
+            // $customer->address2=$request->input('addres2');
+  
     
             
            
     }
-    public function update2(Request $request, $id){
-        
+    // public function addtocart($id, $cid){
+    //     $booking = Booking::find($id);
+    //     $customer=Cutomer::find($cid);
+    //     return view('pages.checkout')->with('booking',$booking)->with('customer',$customer);
 
-    }
+
+    // }
 
     /**
      * Remove the specified resource from storage.
