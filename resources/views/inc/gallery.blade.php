@@ -1,8 +1,10 @@
+<head>
+<!-- provide the csrf token -->
+<meta name="csrf-token" content="{{ csrf_token() }}" /></head>
+
 <div class="container">
-        {{-- Search form is here --}}
+           {{-- Search form is here --}}
                 <div class="container">
-                    
-                
                                 {!!Form:: open(['action'=>['SearchController@vehiclesearch'], 'method'=>'POST','class'=>'needs-validation'])!!}
                                                  {{ csrf_field() }}
                                                 <div class="row">            
@@ -46,21 +48,62 @@
                 <div class="card-deck mb-3 text-center">
                     @foreach ($vehicleChunk as $vehicles)
                     <div class="card mb-5 shadow-sm">
-                            <div class="card-header">
-                                    <h4 class="my-0 font-weight-normal">Enterprise</h4>
-                            </div>
+                        <div class="card-header">
+                             <h4 class="my-0 font-weight-normal">Enterprise</h4>
+                        </div>
                         <img class="card-img-top vehicle-image" src="/storage/cover_images/{{$vehicles->cover_image}}">
-                            
-                            <div class="card-body">
-                              <h1 class="card-title pricing-card-title">$20 <small class="text-muted">/ Day</small></h1>
-                              <button type="button" class="btn btn-lg btn-block btn-primary">Select Vehicle</button>
+                    <input type="hidden" class='vid' name='vehicleid' value='{{$vehicles->id}}'>
+                        <div class="card-body">
+                              <h1 class="card-title pricing-card-title">{{$vehicles->price}} <small class="text-muted">/ Rs-Day</small></h1>
+                             
+                              <button type="button" class="btn btn-lg btn-block btn-primary addCart" onclick="addingtocart('{{$vehicles->id}}')" >Select Vehicle</button>
                             </div>
                     </div>
 
                     @endforeach
                 </div>
-            </div>    
+                        
+            </div>
+ 
              @endforeach
+             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    
+  <script>
+      function addingtocart($id){
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        var url='{{url("/addcart")}}'
+        $("#vprice,#vimage,#vname,#vcategory,.vid").html("");
+        $.ajax({
+                  /* the route pointing to the post function */
+                  url: url,
+                  type: 'POST',
+                  /* send the csrf-token and the input to the controller */
+                  data: {_token: CSRF_TOKEN, message:$id},
+                  dataType: 'JSON',
+                  /* remind that 'data' is the response of the AjaxController */
+                  success: function (data) { 
+                      console.log(data);
+                      $("#vprice").append(data.vprice);
+                      $("#vimage").attr("src",data.vimage);
+                      $("#vname").append(data.vname);
+                      $("#vcategory").append(data.vcategory);
+
+                  }
+              }); 
+      }
+      //create
+      var url='{{url("/addcart")}}'
+     $(document).ready(function(){
+          $(".addCart").click(function(){
+              
+          });
+     });    
+
+  </script> 
+   
+            <!-- load jQuery -->
+    
                  
              {{-- @endforeach
                 @if(isset($details))
