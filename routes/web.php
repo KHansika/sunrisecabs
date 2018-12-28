@@ -53,6 +53,11 @@ Route::get('/reception','ReceptionController@index');
 //search function
 Route::POST('/searchvehicles',['uses'=>'SearchController@vehiclesearch']);
 
+Route::get('ajax',function(){
+    return view('pages.vehicleselect');
+});
 
+Route::POST('/addcart','addtocartsController@addItem');
 
+Route::get('/billing','checkotsController@billing')->name('billing');
 
