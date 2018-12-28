@@ -17,7 +17,7 @@
             <div class="row">
             <div class="container">
                 <div class="col-md-7">
-                        <h1 class="d-flex justify-content-center">Add Vehicle<span class="badge badge-secondary">New</span></h1>
+                        <h1 class="d-flex justify-content-center">Add Vehicle</h1>
                     {!!Form::open(['action' =>'VehiclesController@tostore','method'=>'POST','enctype'=>'multipart/form-data'])!!}
 
                     {{Form::label('type', 'Type')}}
