@@ -17,20 +17,20 @@
                                                 </div>
                                                 </div>
                                                 <div class="col-md-4">
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control" id="datepicker1"name="startdate"
-                                                                        placeholder="Start Date"> 
-                                                                <input name="id" type="hidden" value="{{$booking->id}}">       
-                                                                    </span>
-                                                                </div>
-                                        </div>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" id="datepicker1"name="startdate"
+                                                            placeholder="Start Date"> 
+                                                    <input name="id" type="hidden" value="{{$booking->id}}">       
+                                                        </span>
+                                                    </div>
+                                                </div>
                                         <div class="col-md-4">
                                                         <div class="input-group">
                                                             <input type="text" class="form-control" id="datepicker2"name="returndate"
                                                                 placeholder="Return Date"> <span class="input-group-btn">
                                                                         
                                                                 <button type="submit" class="btn btn-default">
-                                                                    <span class="glyphicon glyphicon-search"></span>
+                                                                    <span class="glyphicon glyphicon-search"> search</span>
                                                                 </button>
                                                             </span>
                                                         </div>
