@@ -99,6 +99,8 @@ class BookingsController extends Controller
         
     }
 
+    //search function
+
     /**
      * Update the specified resource in storage.
      *
@@ -122,7 +124,9 @@ class BookingsController extends Controller
             $booking->droplocation=$request->input('droplocation');
             $booking->days=$request->input('days');
             $booking->topay=$request->input('perday')*$request->input('days');
+            $booking->vehicle_id=$request->input('vehicleid');
             $booking->save();
+            $vehicle=Vehicle::find($request->input('vehicleid'));
             //Updating the customer table
             $customerid=$booking->customer_id;
             $customer=Customer::find($customerid);
@@ -133,7 +137,7 @@ class BookingsController extends Controller
             $customer->address1=$request->input('addres2');
             $customer->address2=$request->input('addres1');
             $customer->save();
-            return view('pages.checkout')->with('booking',$booking)->with('customer',$customer);
+            return view('pages.checkout')->with('booking',$booking)->with('customer',$customer)->with('vehicle',$vehicle);
 
             // return redirect('pages.checkout');
             // return redirect()->route('billing', $booking->id);
