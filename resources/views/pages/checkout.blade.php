@@ -27,8 +27,8 @@
                       <h6 class="my-0">Price Perday</h6>
                       <small class="text-muted">Brief description</small>
                     </div>
-                  <span class="text-muted">"$5"</span>
-                  <input name="perday" type="hidden" value="5000">       
+                  <span class="text-muted">{{$vehicle->price}}</span>
+                  <input name="perday" type="hidden" value="">       
 
                   </li>
                   <li class="list-group-item d-flex justify-content-between lh-condensed">
