@@ -13,6 +13,7 @@
             {{-- image gallery --}}
             
             @include('inc.gallery')
+
         {!!Form:: open(['action'=>['BookingsController@update',$booking->id], 'method'=>'POST','class'=>'needs-validation'])!!}
             <div class="row">
             <div class="col-md-4 order-md-2 mb-4">
@@ -21,7 +22,7 @@
                 <span class="text-muted">Selected Vehicle</span>
               </h4>
 
-            <ul class="list-group mb-3">
+            <ul class="list-group mb-3" id="#cart">
                   <li class="list-group-item d-flex justify-content-between lh-condensed">
                       <div id="cart">
                         <h6 class="my-0" id="vname"></h6>
@@ -45,6 +46,10 @@
                     <span>Price (Per Day)</span>
                     <strong id="vprice"></strong>
                   </li>
+                  <li class="list-group-item d-flex justify-content-between">
+                      <span>Total Price</span>
+                      <strong id="vtprice"></strong>
+                    </li>
             </ul>
           </div>
               <div class="col-md-8 order-md-1">
@@ -67,25 +72,34 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4 mb-2">
+                    <div class="col-md-3 mb-2">
                       <label for="pickup">Pickup Date</label>
-                    <input type="date" name="pickdate" class="form-control" id="datepicker" placeholder="" value="{{$booking->date}}" required>
+                    <input type="text" name="pickdate" class="form-control" id="datepicker" placeholder="" value="{{$booking->date}}" required>
                       {{-- Pickup time --}}
                         
                       <div class="invalid-feedback">
                         Valid Pickup Date and time is required.
                       </div>
                     </div>
-                    <div class="col-md-4 mb-2">
+                    <div class="col-md-3 mb-2">
                       <label for="piktime">Pickup Time</label>
                       <input type="time" name="piktime"class="form-control" id=" " placeholder="" value="" >
                       <div class="invalid-feedback">
                         Valid Drop Down Loaction is required.
                       </div>
                     </div>
-                    <div class="col-md-4 mb-2">
+                    <div class="col-md-3 mb-2">
+                        <label for="pickup">Drop Down Date</label>
+                      <input type="text" name="dropdate" class="form-control" id="datepicker" placeholder="" value="{{$booking->dropdate}}" required>
+                        {{-- Pickup time --}}
+                          
+                        <div class="invalid-feedback">
+                          Valid Pickup Date and time is required.
+                        </div>
+                      </div>
+                    <div class="col-md-3 mb-2">
                       <label for="lastName">Number Of Days</label>
-                      <input type="number" name="days"class="form-control" id="" min='1'  placeholder="No of Days" value="" required>
+                    <input type="number" name="days"class="form-control" id="" min='1'  placeholder="No of Days" value="{{ $booking->days}}" required>
                       <div class="invalid-feedback">
                         Valid Drop Down Loaction is required.
                       </div>
@@ -111,7 +125,7 @@
                 <div class="mb-3">
                   <label for="nic">NIC Number</label>
                   <div class="input-group">
-                    <input type="text" class="form-control" name="nic" id="nic" placeholder="NIC Number" required>
+                    <input type="text" class="form-control" maxlength="12" name="nic" id="nic" placeholder="NIC Number" required>
                     <div class="invalid-feedback" style="width: 100%;">
                       Nic is required
                     </div>
@@ -130,7 +144,11 @@
                   <input type="text"  name="addres1"class="form-control" id="address" placeholder="1234 Main St" required>
                   <div class="invalid-feedback">
                     Please enter your shipping address.
-                  </div>   
+                  </div> 
+                  <input type="text"  name="perday"class="form-control" id="perday" >
+                  <input type="text"  name="vehicleid" class="form-control" id="vid" >
+
+                  
                 </div>
                 <div class="mb-3">
                   <label for="address2">Address Line 2 <span class="text-muted">(Optional)</span></label>
@@ -141,7 +159,6 @@
                   <input type="checkbox" class="custom-control-input" id="save-info">
                 </div>               
                 <button class="btn btn-primary btn-lg btn-block" type="submit">Place Your Booking</button>
-
                 {{Form::hidden('_method','PUT')}}
               </form>
             </div>
