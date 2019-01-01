@@ -5,7 +5,7 @@
 <div class="container">
                {{-- Search form is here --}}
                 <div class="container">
-                    {!!Form:: open(['action'=>['SearchController@vehiclesearch'], 'method'=>'POST','class'=>'needs-validation'])!!}
+        {!!Form:: open(['action'=>['SearchController@vehiclesearch'], 'method'=>'POST','class'=>'needs-validation'])!!}
                              {{ csrf_field() }}
             <div class="row">            
             <div class="col-md-4">
@@ -16,15 +16,15 @@
             </div>
             <div class="col-md-4">
                 <div class="input-group">
-                {{-- <input placeholder="Date" class="textbox-n" type="text" onfocusin="(this.type='date')" onfocusout="(this.type='text')"  id="date">  --}}                        <input type="text" value="" class="form-control" id="datepicker2" onfocusin="(this.type='date')" placeholder="Start Date" onfocusout="(this.type='text')" name="startdate">
+                {{-- <input placeholder="Date" class="textbox-n" type="text" onfocusin="(this.type='date')" onfocusout="(this.type='text')"  id="date">  --}}                        <input type="text" value="" class="form-control" id="datepicker2" onfocusin="(this.type='date')" placeholder="Start Date" onfocusout="(this.type='text')" name="startdate" required>
                 <input name="id" type="hidden" value="{{$booking->id}}">       
                 </span>
                 </div>
             </div>
             <div class="col-md-4">
                     <div class="input-group">
-                        <input type="text" placeholder="SelectReturn Date"value="" class="form-control" onfocusin="(this.type='date')" onfocusout="(this.type='text')" id="datepicker2" name="returndate"
-                            placeholder="Return Date"> <span class="input-group-btn">
+                        <input type="text" value="" class="form-control" onfocusin="(this.type='date')" onfocusout="(this.type='text')" id="datepicker2" name="returndate"
+                            placeholder="Return Date" required> <span class="input-group-btn">
                             <button type="submit" class="btn btn-default">
                             <span class="glyphicon glyphicon-search"> search</span>
                             </button>
