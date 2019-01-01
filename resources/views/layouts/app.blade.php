@@ -29,5 +29,5 @@
 <body>
     @include('inc.nav')
     @yield('content')
-    
+    @yield('scripts')
 </body>
