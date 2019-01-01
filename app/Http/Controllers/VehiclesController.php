@@ -16,8 +16,13 @@ class VehiclesController extends Controller
     }
     public function tostore (Request $request){
         $this->validate($request,[
-            'cover_image'=>'image|nullable|max:1999'
+            'cover_image'=>'image|nullable|max:1999',
+            'plateno'=>'required|unique:vehicles,plateno',
+            'price'=>'required',
+            'category'=>'required',
+            'regno'=>'required|unique:vehicles,regno'
         ]);
+
         //handle file upload
         if($request->hasFile('cover_image')){
         $filenameWithExt=$request->file('cover_image')->getClientOriginalName();
@@ -44,6 +49,6 @@ class VehiclesController extends Controller
 
     
             $vehicle->save();
-            return redirect('/addvehicles');
+            return redirect('/addvehicles')->with('success', 'Vehicle has been added.');
     }
 }

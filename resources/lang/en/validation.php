@@ -141,6 +141,11 @@ return [
     |
     */
 
-    'attributes' => [],
+//    'attributes' => [],
+    'attributes' => [
+        'plateno'=>'Vehicle Plate Number',
+        'regno'=> 'Vehicle Registration Number'
+    ],
+
 
 ];
