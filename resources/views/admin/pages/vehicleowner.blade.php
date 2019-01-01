@@ -28,7 +28,7 @@
                                         <h5 class="card-title"> NIC No :{{$owner->nic}}</h5>
                                         <h5 class="card-title">Owners Address Type:{{$owner->address}}</h5>
                                         <h5 class="card-title">Contact Number: {{$owner->contact}}</h5>
-                                        <h5 class="card-title">Email:{{$owner->Email}}</h5>                                    
+                                        <h5 class="card-title">Email:{{$owner->email}}</h5>
                                       </div>
                                     <div class="col-md-6">
                                         </div>
