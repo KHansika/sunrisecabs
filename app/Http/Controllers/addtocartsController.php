@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Vehicle;
 use App\Booking;
+use Stripe\Stripe;
+use Stripe\Charge;
+
+use Illuminate\Support\Facades\Redirect;
+
 class addtocartsController extends Controller
 {
     
@@ -37,4 +42,21 @@ class addtocartsController extends Controller
 
 
     }
+    public function checkout(Request $request){
+        Stripe::setApiKey('sk_test_3795DCT1dCRxQdSqRx2HaV2b');
+        try{
+            Charge::create(array(
+                "amount"=>400,
+                "currency"=>"usd",
+                "source"=>$request->input('stripeToken'),
+                "descreption"=>"Test"
+            ));
+        }catch(\Exception $e){
+            return Redirect()->route('billing')->with('error',$e->getMessage()); 
+            echo "LAnka";
+               }
+    return Redirect::back(); 
+
+    }
+
 }
