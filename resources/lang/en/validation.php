@@ -144,7 +144,9 @@ return [
 //    'attributes' => [],
     'attributes' => [
         'plateno'=>'Vehicle Plate Number',
-        'regno'=> 'Vehicle Registration Number'
+        'regno'=> 'Vehicle Registration Number',
+        'nic'=>'NIC Number',
+        'email'=>'email address'
     ],
 
 
