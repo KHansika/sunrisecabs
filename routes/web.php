@@ -61,3 +61,7 @@ Route::POST('/addcart','addtocartsController@addItem');
 
 Route::get('/billing','checkotsController@billing')->name('billing');
 
+// Route::POST('/checkout',['uses'=>'reservationsController@checkout']);
+Route::POST('/reservation',['uses'=>'reservationsController@insert']);
+
+
