@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use App\Booking;
 use App\Customer;
 use App\Vehicle;
+use Validator, Input; 
 use DB;
 use Illuminate\Support\Facades\Redirect;
-use Validator, Input; 
 
 
 class BookingsController extends Controller
